@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get That Studio</title>
+  <meta
+    name="description"
+    content="Get That Studio is a boutique beauty and wellness studio designed for confidence, transformation, and self-care."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="studio-page">
+  <main class="studio-shell">
+    <section class="studio-hero" aria-labelledby="studio-title">
+      <div class="studio-hero__brand">
+        <img class="studio-logo" src="assets/GTS Transparent.png" alt="Get That Studio">
+      </div>
+      <div class="studio-hero__content">
+        <div class="studio-hero__copy">
+          <p class="eyebrow">Beauty & wellness studio</p>
+          <h1 id="studio-title">Welcome to Get That Studio</h1>
+          <p>
+            A boutique beauty and wellness studio designed for confidence, transformation, and self-care.
+          </p>
+        </div>
+        <div class="studio-hero__details" aria-label="Studio highlights">
+          <span>Body</span>
+          <span>Beauty</span>
+          <span>Wellness</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="studio-experiences" aria-labelledby="studio-experiences-title">
+      <div class="studio-section-heading">
+        <h2 id="studio-experiences-title">Choose your experience</h2>
+      </div>
+      <div class="studio-card-grid" id="studio-card-grid"></div>
+    </section>
+  </main>
+
+  <script type="module" src="studio.js"></script>
+  <script type="module" src="site.js"></script>
+</body>
+</html>

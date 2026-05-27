@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GetthatBod | Booking</title>
+  <meta name="description" content="Book a GetthatBod service using live availability on the website.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="/get-that-bod/" aria-label="GetthatBod home">
+        <img
+          src="https://43476039d54887c26aa1.cdn6.editmysite.com/uploads/b/43476039d54887c26aa189d3aeedaaf81b019aa9b596da6ff6acd8780975262c/IMG_9222_1746614120.jpeg"
+          alt="GetthatBod logo"
+        >
+      </a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/get-that-bod/">Home</a>
+        <a href="/get-that-bod/services.html">Services</a>
+        <a href="/get-that-bod/results.html">Results</a>
+        <a href="/get-that-bod/contact.html">Contact</a>
+        <a href="/">Back to Get That Studio</a>
+      </nav>
+
+      <a class="button button-solid" href="/get-that-bod/consult.html">Book now</a>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <p class="eyebrow">Booking</p>
+        <h1>Availability, waiver, book, pay</h1>
+        <p>
+          Check live availability, complete the signed waiver, create the booking, then move into payment.
+        </p>
+      </section>
+
+      <nav class="appointment-tabs" aria-label="Appointment steps">
+        <button class="appointment-tab is-active" type="button" data-appointment-tab="availability-panel">Availability</button>
+        <button class="appointment-tab" type="button" data-appointment-tab="waiver-step">Waiver</button>
+        <button class="appointment-tab" type="button" data-appointment-tab="book-step">Book</button>
+        <button class="appointment-tab" type="button" data-appointment-tab="pay-step">Pay</button>
+      </nav>
+
+      <section class="booking-layout section page-section-tight" id="booking-app">
+        <div class="booking-panel" id="availability-panel">
+          <div class="booking-panel__intro">
+            <p class="eyebrow">Step 1</p>
+            <h2>Availability</h2>
+            <p id="booking-support" class="booking-status" data-tone="muted">Loading booking settings...</p>
+          </div>
+
+          <div class="booking-fields">
+            <label class="field">
+              <span>Service</span>
+              <select id="booking-service"></select>
+            </label>
+
+            <label class="field">
+              <span>Team member</span>
+              <select id="booking-team-member"></select>
+            </label>
+
+            <label class="field">
+              <span>Date</span>
+              <input id="booking-date" type="date">
+            </label>
+
+            <label class="field">
+              <span>Location</span>
+              <select id="booking-location"></select>
+            </label>
+          </div>
+
+          <div class="booking-actions">
+            <button class="button button-solid" id="booking-search" type="button">Find times</button>
+          </div>
+        </div>
+
+        <div class="booking-panel booking-panel--secondary">
+          <div class="booking-panel__intro">
+            <p class="eyebrow">Step 2</p>
+            <h2>Select a live time</h2>
+            <p id="availability-status" class="booking-status" data-tone="muted">Select your options and search to load live slots.</p>
+          </div>
+
+          <div class="availability-grid" id="availability-grid"></div>
+        </div>
+
+        <div class="booking-stack">
+          <section class="booking-panel booking-step is-locked" id="waiver-step" aria-disabled="true">
+            <div class="booking-panel__intro">
+              <p class="eyebrow">Step 3</p>
+              <h2>Waiver</h2>
+              <p id="waiver-status" class="booking-status" data-tone="muted">Choose a live time to unlock the waiver step.</p>
+            </div>
+
+            <div class="booking-step__content">
+              <div class="waiver-copy">
+                <p>
+                  To keep every treatment considered and personal, please take a moment to review
+                  the Get That Bod consultation, informed consent, and liability waiver.
+                </p>
+                <p>
+                  Once signed, your consent is securely saved with your appointment details and a
+                  copy will be available to download for your records.
+                </p>
+              </div>
+
+              <div class="consent-document" aria-label="GET THAT BOD consent document">
+                <div class="consent-document__header">
+                  <strong>GET THAT BOD</strong>
+                  <span>Client Consultation, Informed Consent & Liability Waiver</span>
+                </div>
+
+                <section class="consent-section">
+                  <h3>Treatment information</h3>
+                  <p>
+                    Fat Cavitation, Radio Frequency Skin Tightening, and EMS Sculpt are non-invasive cosmetic
+                    treatments designed to assist with body contouring, skin tightening, and muscle toning.
+                  </p>
+                  <p>
+                    These treatments are cosmetic procedures only and are not intended to diagnose, treat, cure,
+                    or prevent any medical condition.
+                  </p>
+                  <p>
+                    Results vary between individuals and no guarantees have been made regarding treatment outcomes.
+                    Multiple sessions may be recommended to achieve desired results.
+                  </p>
+                </section>
+
+                <section class="consent-section">
+                  <h3>Medical disclosure</h3>
+                  <p>
+                    By proceeding with treatment, clients acknowledge that they have disclosed all relevant medical
+                    conditions, medications, allergies, injuries, implants, and other health-related information that
+                    may impact treatment safety.
+                  </p>
+                  <p>
+                    Clients acknowledge that withholding medical information may increase the risk of adverse
+                    reactions and may affect treatment safety.
+                  </p>
+                </section>
+
+                <section class="consent-section">
+                  <h3>Possible risks & side effects</h3>
+                  <p>Possible side effects and risks may include, but are not limited to:</p>
+                  <ul>
+                    <li>Temporary redness</li>
+                    <li>Mild swelling</li>
+                    <li>Muscle soreness or fatigue</li>
+                    <li>Tingling sensations</li>
+                    <li>Mild cramping</li>
+                    <li>Temporary tenderness</li>
+                    <li>Skin sensitivity</li>
+                    <li>Temporary discomfort during treatment</li>
+                  </ul>
+                  <p>Although uncommon, adverse reactions may occur.</p>
+                </section>
+
+                <section class="consent-section">
+                  <h3>Client acknowledgement & consent</h3>
+                  <p>
+                    Clients acknowledge that they have read and understood the information provided regarding treatment
+                    procedures, risks, possible side effects, expected outcomes, and aftercare recommendations.
+                  </p>
+                  <p>
+                    Clients understand that treatment outcomes vary between individuals and that no guarantees or
+                    warranties have been made regarding results.
+                  </p>
+                  <p>
+                    Clients understand that multiple sessions may be required for optimal outcomes and that practitioners
+                    reserve the right to refuse or discontinue treatment where contraindications or safety concerns exist.
+                  </p>
+                </section>
+
+                <section class="consent-section">
+                  <h3>Liability waiver</h3>
+                  <p>
+                    Clients acknowledge that they are voluntarily undergoing cosmetic treatment at GET THAT BOD at their
+                    own risk.
+                  </p>
+                  <p>
+                    GET THAT BOD, its owners, employees, contractors, and practitioners are not liable for adverse
+                    reactions, injury, loss, or complications arising from treatment except where caused by negligence
+                    or unlawful conduct.
+                  </p>
+                  <p>
+                    Clients confirm that all information provided prior to treatment is true and accurate to the best of
+                    their knowledge.
+                  </p>
+                </section>
+
+                <section class="consent-section">
+                  <h3>Photo & media consent</h3>
+                  <p>
+                    Clients may be asked separately for consent regarding treatment photos, videos, and marketing
+                    material usage.
+                  </p>
+                </section>
+              </div>
+
+              <div class="consent-checklist" aria-label="Consent selections">
+                <p class="consent-checklist__title">Required confirmations</p>
+                <label class="checkbox-field">
+                  <input
+                    type="checkbox"
+                    value="treatment-consent"
+                    data-consent-required
+                    data-consent-label="I consent to receive the selected Get That Bod treatment."
+                  >
+                  <span>I consent to receive the selected Get That Bod treatment.</span>
+                </label>
+                <label class="checkbox-field">
+                  <input
+                    type="checkbox"
+                    value="risks-and-aftercare"
+                    data-consent-required
+                    data-consent-label="I understand the treatment information, risks, contraindications, and aftercare requirements."
+                  >
+                  <span>I understand the treatment information, possible risks, side effects, expected outcomes, and aftercare recommendations.</span>
+                </label>
+                <label class="checkbox-field">
+                  <input
+                    type="checkbox"
+                    value="accurate-information"
+                    data-consent-required
+                    data-consent-label="I confirm the information I provide is accurate and complete."
+                  >
+                  <span>I confirm the information I provide is accurate and complete.</span>
+                </label>
+                <label class="checkbox-field">
+                  <input
+                    type="checkbox"
+                    value="liability-waiver"
+                    data-consent-required
+                    data-consent-label="I understand I am voluntarily undergoing cosmetic treatment at my own risk."
+                  >
+                  <span>I understand I am voluntarily undergoing cosmetic treatment at my own risk.</span>
+                </label>
+
+                <p class="consent-checklist__title">Optional release</p>
+                <label class="checkbox-field">
+                  <input
+                    type="checkbox"
+                    value="photo-video-release"
+                    data-consent-optional
+                    data-consent-label="I consent to photo/video release for treatment photos, videos, and marketing material usage."
+                  >
+                  <span>I consent to photo/video release for treatment photos, videos, and marketing material usage.</span>
+                </label>
+              </div>
+
+              <label class="field waiver-name-field">
+                <span>Full legal name</span>
+                <input id="waiver-signer-name" type="text" autocomplete="name">
+              </label>
+
+              <div class="signature-pad" aria-label="Signature pad">
+                <canvas id="waiver-signature" width="720" height="240"></canvas>
+              </div>
+
+              <div class="booking-actions">
+                <button class="button button-ghost" id="signature-clear" type="button">Clear signature</button>
+              </div>
+
+              <label class="checkbox-field">
+                <input id="waiver-acknowledgement" type="checkbox">
+                <span>I have reviewed the GET THAT BOD consultation, informed consent, and liability waiver and consent to sign it electronically.</span>
+              </label>
+
+              <div class="booking-actions">
+                <button class="button button-solid" id="waiver-continue" type="button">Sign waiver</button>
+                <a class="button button-ghost" id="waiver-download" href="#" download hidden>Download signed copy</a>
+              </div>
+            </div>
+          </section>
+
+          <section class="booking-panel booking-step is-locked" id="book-step" aria-disabled="true">
+            <form class="booking-form booking-form--standalone" id="booking-customer-form">
+              <p class="eyebrow">Step 4</p>
+              <h2>Book</h2>
+              <p id="book-step-status" class="booking-status" data-tone="muted">Availability and waiver must be completed before booking.</p>
+
+              <div class="booking-fields">
+                <label class="field">
+                  <span>First name</span>
+                  <input name="firstName" type="text" required>
+                </label>
+
+                <label class="field">
+                  <span>Last name</span>
+                  <input name="lastName" type="text" required>
+                </label>
+
+                <label class="field">
+                  <span>Email</span>
+                  <input name="email" type="email" required>
+                </label>
+
+                <label class="field">
+                  <span>Phone</span>
+                  <input name="phone" type="tel" required>
+                </label>
+              </div>
+
+              <div class="booking-actions">
+                <button class="button button-solid" id="booking-submit" type="submit">Create booking</button>
+                <a class="button button-ghost" href="contact.html">Need help?</a>
+              </div>
+              <p id="booking-status" class="booking-status" data-tone="muted">Complete the earlier steps to continue.</p>
+            </form>
+          </section>
+
+          <section class="booking-panel booking-step is-locked" id="pay-step" aria-disabled="true">
+            <div class="booking-panel__intro">
+              <p class="eyebrow">Step 5</p>
+              <h2>Pay</h2>
+              <p id="pay-step-status" class="booking-status" data-tone="muted">Payment unlocks after the booking is confirmed.</p>
+            </div>
+
+            <div class="booking-step__content">
+              <div class="waiver-copy">
+                <p id="pay-step-copy">
+                  Once the booking is successfully created, this step is where payment or on-site
+                  payment collection will continue.
+                </p>
+              </div>
+
+              <div class="booking-actions">
+                <button class="button button-solid" id="payment-continue" type="button" disabled>Continue to payment</button>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>GetthatBod</p>
+      <p>Availability - signed waiver - book - pay flow.</p>
+    </footer>
+  </div>
+  <script type="module" src="/site.js"></script>
+  <script type="module" src="/booking.js"></script>
+</body>
+</html>

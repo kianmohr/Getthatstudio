@@ -1,0 +1,13 @@
+.env
+.env.*
+!.env.example
+!.env.production.example
+
+node_modules/
+dist/
+data/
+square-source.html
+
+*.log
+.DS_Store
+Thumbs.db
