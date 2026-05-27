@@ -306,8 +306,7 @@ async function createSquareCustomer({ firstName, lastName, email, phone }) {
       given_name: firstName,
       family_name: lastName,
       email_address: email,
-      phone_number: phone,
-      creation_source: "THIRD_PARTY"
+      phone_number: phone
     })
   });
 
