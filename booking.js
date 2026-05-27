@@ -483,9 +483,28 @@ if (root) {
 
     state.waiverRecord = payload.waiver;
     state.waiverAccepted = true;
-    elements.waiverDownload.href = `${API_BASE}${payload.waiver.downloadUrl}`;
-    elements.waiverDownload.download = payload.waiver.fileName;
+
+    const downloadUrl = `${API_BASE}${payload.waiver.downloadUrl}`;
+    const fileName = payload.waiver.fileName;
+
     elements.waiverDownload.hidden = false;
+    elements.waiverDownload.href = "#";
+    elements.waiverDownload.removeAttribute("download");
+    elements.waiverDownload.onclick = async (event) => {
+      event.preventDefault();
+      try {
+        const fileResponse = await fetch(downloadUrl);
+        const blob = await fileResponse.blob();
+        const blobUrl = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = blobUrl;
+        a.download = fileName;
+        a.click();
+        URL.revokeObjectURL(blobUrl);
+      } catch {
+        alert("Could not download the waiver. Please try again.");
+      }
+    };
     setStatus(elements.waiverStatus, `Signed waiver saved. Download a copy for your records, then continue booking.`, "success");
     setStatus(elements.bookingStatus, "Enter the client details and create the booking.", "muted");
     syncFlowState();
