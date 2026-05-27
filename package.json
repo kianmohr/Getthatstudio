@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
+    "start": "node scripts/dev.mjs dist",
     "dev": "node scripts/dev.mjs",
     "preview": "node scripts/dev.mjs dist 4173"
   },
