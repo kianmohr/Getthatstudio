@@ -483,7 +483,7 @@ if (root) {
 
     state.waiverRecord = payload.waiver;
     state.waiverAccepted = true;
-    elements.waiverDownload.href = payload.waiver.downloadUrl;
+    elements.waiverDownload.href = `${API_BASE}${payload.waiver.downloadUrl}`;
     elements.waiverDownload.download = payload.waiver.fileName;
     elements.waiverDownload.hidden = false;
     setStatus(elements.waiverStatus, `Signed waiver saved. Download a copy for your records, then continue booking.`, "success");
