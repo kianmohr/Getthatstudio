@@ -768,7 +768,27 @@ async function saveSignedWaiver(body, request) {
 
 await loadDotEnv();
 
+const allowedOrigins = new Set([
+  "http://localhost:3000",
+  "http://localhost:4173",
+  "https://kianmohr.github.io"
+]);
+
 const server = http.createServer(async (request, response) => {
+  const origin = request.headers.origin ?? "";
+
+  if (allowedOrigins.has(origin)) {
+    response.setHeader("Access-Control-Allow-Origin", origin);
+    response.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    response.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  }
+
+  if (request.method === "OPTIONS") {
+    response.writeHead(204);
+    response.end();
+    return;
+  }
+
   if ((request.url ?? "").startsWith("/api/waivers/download/")) {
     try {
       const fileName = decodeURIComponent((request.url ?? "").split("/api/waivers/download/")[1].split("?")[0]);

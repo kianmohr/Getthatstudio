@@ -1,3 +1,5 @@
+const API_BASE = "https://getthatstudio-production.up.railway.app";
+
 const statusElement = document.querySelector("#service-status");
 const serviceGrid = document.querySelector("#service-grid");
 
@@ -138,7 +140,7 @@ if (!statusElement || !serviceGrid) {
 
   async function loadServices() {
     try {
-      const response = await fetch("/api/services");
+      const response = await fetch(`${API_BASE}/api/services`);
       const payload = await response.json();
 
       if (!response.ok) {

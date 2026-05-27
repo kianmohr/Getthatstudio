@@ -1,3 +1,5 @@
+const API_BASE = "https://getthatstudio-production.up.railway.app";
+
 const root = document.querySelector("#booking-app");
 const consentDocument = {
   title: "GET THAT BOD Client Consultation, Informed Consent & Liability Waiver",
@@ -383,7 +385,7 @@ if (root) {
   async function loadBootstrap() {
     setStatus(elements.support, "Loading booking settings...", "muted");
 
-    const response = await fetch("/api/bookings/bootstrap");
+    const response = await fetch(`${API_BASE}/api/bookings/bootstrap`);
     const payload = await readApiPayload(response, "Could not load booking setup.");
 
     if (!response.ok) {
@@ -399,7 +401,7 @@ if (root) {
     state.selectedAvailability = null;
     resetDownstreamState();
 
-    const response = await fetch("/api/bookings/availability", {
+    const response = await fetch(`${API_BASE}/api/bookings/availability`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -452,7 +454,7 @@ if (root) {
 
     setStatus(elements.waiverStatus, "Saving signed waiver...", "muted");
 
-    const response = await fetch("/api/waivers", {
+    const response = await fetch(`${API_BASE}/api/waivers`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -505,7 +507,7 @@ if (root) {
     setStatus(elements.bookingStatus, "Sending the booking request...", "muted");
 
     const formData = new FormData(elements.customerForm);
-    const response = await fetch("/api/bookings/create", {
+    const response = await fetch(`${API_BASE}/api/bookings/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
