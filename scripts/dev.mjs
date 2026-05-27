@@ -5,6 +5,7 @@ import http from "node:http";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
+import nodemailer from "nodemailer";
 
 const MIME_TYPES = {
   ".css": "text/css; charset=utf-8",
@@ -729,6 +730,47 @@ async function createSignedWaiverPdf(record, fileName) {
   await writeFile(path.join(signedWaiverDir, fileName), await pdf.save());
 }
 
+async function sendWaiverEmail(record, pdfPath) {
+  const gmailUser = (process.env.GMAIL_USER ?? "").trim();
+  const gmailAppPassword = (process.env.GMAIL_APP_PASSWORD ?? "").trim();
+  const adminEmail = (process.env.ADMIN_EMAIL ?? gmailUser).trim();
+
+  if (!gmailUser || !gmailAppPassword) {
+    console.warn("Gmail credentials not set — skipping waiver email.");
+    return;
+  }
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: gmailUser,
+      pass: gmailAppPassword
+    }
+  });
+
+  await transporter.sendMail({
+    from: `Get That Bod <${gmailUser}>`,
+    to: adminEmail,
+    subject: `Signed Waiver — ${record.signerName}`,
+    text: [
+      `A new waiver has been signed.`,
+      ``,
+      `Client: ${record.signerName}`,
+      `Service: ${record.service}`,
+      `Location: ${record.location}`,
+      `Appointment: ${new Intl.DateTimeFormat("en-AU", { dateStyle: "medium", timeStyle: "short", timeZone: "Australia/Adelaide" }).format(new Date(record.appointmentStartAt))}`,
+      `Signed: ${new Intl.DateTimeFormat("en-AU", { dateStyle: "medium", timeStyle: "short", timeZone: "Australia/Adelaide" }).format(new Date(record.createdAt))}`,
+      `Record ID: ${record.id}`
+    ].join("\n"),
+    attachments: [
+      {
+        filename: record.fileName,
+        path: pdfPath
+      }
+    ]
+  });
+}
+
 async function saveSignedWaiver(body, request) {
   const id = randomUUID();
   const createdAt = new Date().toISOString();
@@ -758,8 +800,13 @@ async function saveSignedWaiver(body, request) {
   };
 
   await mkdir(waiverDir, { recursive: true });
+  const pdfPath = path.join(signedWaiverDir, fileName);
   await createSignedWaiverPdf(record, fileName);
   await writeFile(path.join(waiverDir, `${id}.json`), JSON.stringify(record, null, 2));
+
+  sendWaiverEmail(record, pdfPath).catch((error) => {
+    console.error("Failed to send waiver email:", error.message);
+  });
 
   return record;
 }
