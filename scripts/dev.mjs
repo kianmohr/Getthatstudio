@@ -272,8 +272,7 @@ async function searchSquareAvailability({ locationId, serviceVariationId, teamMe
 
   if (teamMemberId) {
     segmentFilter.team_member_id_filter = {
-      filter_type: "ANY",
-      filter_value: [teamMemberId]
+      any: [teamMemberId]
     };
   }
 
