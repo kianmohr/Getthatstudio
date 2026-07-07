@@ -4,7 +4,7 @@ const businessPages = [
     eyebrow: "Body contouring",
     description: "Body contouring, EMS sculpting, fat cavitation, and radio frequency skin tightening.",
     buttonLabel: "Enter Get That Bod",
-    href: "/Getthatstudio/get-that-bod/"
+    href: "/get-that-bod/"
   }
 ];
 
