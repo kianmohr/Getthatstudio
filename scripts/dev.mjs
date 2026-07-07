@@ -816,7 +816,8 @@ await loadDotEnv();
 const allowedOrigins = new Set([
   "http://localhost:3000",
   "http://localhost:4173",
-  "https://kianmohr.github.io"
+  "https://kianmohr.github.io",
+  "https://getthatstudio.com.au"
 ]);
 
 const server = http.createServer(async (request, response) => {
