@@ -973,8 +973,9 @@ a {
 }
 
 .site-footer {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
   gap: 16px;
   margin-top: 38px;
   padding: 22px 24px;
@@ -986,6 +987,27 @@ a {
 
 .site-footer p {
   margin: 0;
+}
+
+.site-footer p:nth-child(1) {
+  text-align: left;
+}
+
+.site-footer p:nth-child(2) {
+  text-align: center;
+}
+
+.site-footer p:nth-child(3) {
+  text-align: right;
+}
+
+.site-footer a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.studio-shell.site-footer {
+  padding: 22px 24px;
 }
 
 .service-modal {
@@ -1243,6 +1265,14 @@ a {
   }
 
   .site-footer {
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 6px;
+  }
+
+  .site-footer p:nth-child(1),
+  .site-footer p:nth-child(2),
+  .site-footer p:nth-child(3) {
+    text-align: center;
   }
 }
